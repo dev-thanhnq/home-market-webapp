@@ -1,10 +1,8 @@
 import axios from 'axios'
 import store from "../store";
 
-const baseUrl = process.env.VUE_APP_BASE_URL;
-
 export const apiAxios = axios.create({
-    baseURL: `${baseUrl}/api`,
+    baseURL: 'http://47.254.253.64:5000/api',
     headers: {
         post: {
             'Content-Type': 'application/json',
