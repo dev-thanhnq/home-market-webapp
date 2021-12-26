@@ -101,7 +101,6 @@ export default {
         data.append('password', this.password)
         api.login(data).then((response) => {
           if (response) {
-            console.log(_.get(response, "data", {}))
             this.updateAccessToken(_.get(response, 'data.token'))
             this.updateLoginStatus(true)
             this.updateAuthUser(_.get(response, 'data.user'))

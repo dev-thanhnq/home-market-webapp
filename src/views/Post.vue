@@ -3,7 +3,7 @@
     <el-card class="box-card header">
       <el-row class="style-header" :gutter="20">
         <el-col>
-          <el-input placeholder="Nhập thông tin cần tìm kiếm" v-model="search" @keydown.enter.native="handleSearch" @clear="clear"
+          <el-input placeholder="Nhập thông tin cần tìm kiếm" v-model="search" @keydown.enter.native="handleGetPosts" @clear="handleGetPosts"
                     clearable
                     style="width: 400px; margin-right: 10px"
           ></el-input>
@@ -15,15 +15,15 @@
                 :value="item.value">
             </el-option>
           </el-select>
-          <el-input placeholder="Số phòng ngủ" v-model="bedroom" @keydown.enter.native="handleSearch" @clear="clear"
+          <el-input placeholder="Số phòng ngủ" v-model="bedroom" @keydown.enter.native="handleGetPosts"
                     type="number"
                     style="width: 150px; margin-right: 10px"
           ></el-input>
-          <el-input placeholder="Số phòng tắm" v-model="toilet" @keydown.enter.native="handleSearch" @clear="clear"
+          <el-input placeholder="Số phòng tắm" v-model="toilet" @keydown.enter.native="handleGetPosts"
                     type="number"
                     style="width: 150px; margin-right: 10px"
           ></el-input>
-          <el-button type="primary" @click="handleSearch"><i class="el-icon-search"></i> <span>Tìm kiếm</span></el-button>
+          <el-button type="primary" @click="handleGetPosts"><i class="el-icon-search"></i> <span>Tìm kiếm</span></el-button>
         </el-col>
       </el-row>
     </el-card>
@@ -94,17 +94,15 @@ import {mapMutations} from "vuex";
 export default {
   name: "Post",
   methods: {
-    handleGetPosts(params = null) {
+    handleGetPosts(params = {}) {
       this.loading = true
       if (this.search) {
         params.search = this.search
       }
-      // if (this.filter) {
-      //   params.filter = this.filter
-      //   // + (this.district ? "" + this.district : "")
-      //   // + (this.toilet ? ",toilet:" + this.toilet : "")
-      //   // + (this.bedroom ? ",bedroom:" + this.bedroom : "")
-      // }
+      params.filter = "address:"
+          + (this.district ? "" + this.district : "")
+          + (this.toilet ? ",toilet:" + this.toilet : "")
+          + (this.bedroom ? ",bedroom:" + this.bedroom : "")
       api.getPosts(params).then(response => {
         this.posts = _.get(response, "data.posts", [])
         this.total = _.get(response, "data.paging.total_count", 0)
@@ -119,12 +117,6 @@ export default {
         page: val
       }
       this.handleGetPosts(params)
-    },
-    handleSearch() {
-      this.handleGetPosts({q: this.q});
-    },
-    clear() {
-      this.handleGetPosts();
     },
     ...mapMutations([
       'updateTitle'
@@ -152,7 +144,6 @@ export default {
       toilet: "",
       bedroom: "",
       district: "",
-      filter: 'address:',
       districtList: [
         {
           label: "Ba Đình",

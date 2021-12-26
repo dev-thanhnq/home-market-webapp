@@ -9,7 +9,7 @@
             </div>
             <p class="card-category">Số lượng bài viết</p>
             <h3 class="card-title">
-              {{ dashboard ? dashboard.number_posts : 0}}
+              {{ dashboard.number_posts ? dashboard.number_posts : 0}}
             </h3>
           </div>
         </div>
@@ -22,7 +22,7 @@
             </div>
             <p class="card-category">Số lượng tài khoản</p>
             <h3 class="card-title">
-              {{ dashboard ? dashboard.number_users : 0}}
+              {{ dashboard.number_users ? dashboard.number_users : 0}}
             </h3>
           </div>
         </div>

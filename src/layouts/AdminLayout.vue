@@ -2,9 +2,6 @@
   <el-container class="container-body">
     <el-aside class="sideBar">
       <div class="logoWrap">
-        <a href="/">
-          <img src="../assets/images/dropship-logo.png" alt="">
-        </a>
       </div>
       <div class="menu-scroll">
         <el-menu
