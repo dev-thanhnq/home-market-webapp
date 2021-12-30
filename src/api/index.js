@@ -43,5 +43,12 @@ export default {
             url: '/posts',
             params: data
         })
+    },
+    getUsers(data) {
+        return apiAxios({
+            method: 'get',
+            url: '/admin/user',
+            params: data
+        })
     }
 }

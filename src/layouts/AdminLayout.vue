@@ -17,13 +17,13 @@
           <el-menu-item-group title="QUẢN LÝ" class="mb-15">
             <router-link to="/posts">
               <el-menu-item index="2" class="menu_item">
-                <i class="el-icon-time"></i>
+                <i class="el-icon-tickets"></i>
                 <span>Quản lý bài đăng</span>
               </el-menu-item>
             </router-link>
             <router-link to="/users">
               <el-menu-item index="3" class="menu_item">
-                <i class="el-icon-sell"></i>
+                <i class="el-icon-user"></i>
                 <span>Quản lý tài khoản</span>
               </el-menu-item>
             </router-link>
