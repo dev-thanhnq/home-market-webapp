@@ -44,7 +44,9 @@
             prop="title"
             label="Tiêu đề">
           <template v-slot:default="shop">
-            <el-link :underline="false" type="primary">{{ shop.row.title}}</el-link>
+            <router-link :to="'/post/' + shop.row.post_id">
+              <el-link :underline="false" type="primary">{{ shop.row.title}}</el-link>
+            </router-link>
           </template>
         </el-table-column>
         <el-table-column

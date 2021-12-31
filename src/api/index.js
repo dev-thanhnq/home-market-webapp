@@ -50,5 +50,11 @@ export default {
             url: '/admin/user',
             params: data
         })
+    },
+    getDetailPost(id) {
+        return apiAxios({
+            method: 'get',
+            url: '/post/' + id
+        })
     }
 }
