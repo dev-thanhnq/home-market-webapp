@@ -72,6 +72,13 @@
             {{ item.row.sold ? "Đã bán" : "Chưa bán" }}
           </template>
         </el-table-column>
+        <el-table-column
+            align="center"
+            label="Hành động">
+          <template scope="item">
+            <el-button type="danger" icon="el-icon-delete" circle @click="handleDeletePost(item.row.post_id)"></el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <div class="paginationWarp" style="float: right; margin: 20px 0 20px 0">
         <el-col :xs="{span:24}" :sm="{span:14}" :md="{span:14}" :lg="{span:14}">
@@ -126,6 +133,32 @@ export default {
     ...mapMutations('home', [
       'updateActiveMenu'
     ]),
+    handleDeletePost(id) {
+      this.$confirm('Dữ liệu không thể phục hồi, Bạn có muốn biếp tục?', 'Cảnh báo', {
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Đóng',
+        confirmButtonClass: 'deleteConfirm',
+        type: 'warning'
+      }).then(() => {
+
+        api.deletePost(id).then(() => {
+          this.$message({
+            showClose: true,
+            type: 'success',
+            message: 'Xóa thành công'
+          });
+          this.closePopper()
+          this.handleCurrentChange(this.current_page)
+        })
+      })
+    },
+    closePopper() {
+      let control = document.getElementsByClassName('el-popper');
+      control.forEach(element => {
+        element.style.display = 'none'
+        element.style.position = 'static'
+      })
+    },
   },
   mounted() {
     this.handleGetPosts();

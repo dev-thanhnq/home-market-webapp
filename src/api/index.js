@@ -56,5 +56,17 @@ export default {
             method: 'get',
             url: '/post/' + id
         })
+    },
+    deletePost(id) {
+        return apiAxios({
+            method: 'delete',
+            url: '/post/' + id
+        })
+    },
+    deleteUser(id) {
+        return apiAxios({
+            method: 'delete',
+            url: '/admin/user/' + id
+        })
     }
 }
