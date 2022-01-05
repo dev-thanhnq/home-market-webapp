@@ -70,8 +70,6 @@ export default {
       }
       api.getUsers(params).then(response => {
         this.users = _.get(response, "data", [])
-        // this.total = _.get(response, "data.paging.total_count", 0)
-        // this.current_page = _.get(response, "data.paging.current_page", 1)
         this.loading = false
       }).catch(() => {
         this.loading = false
