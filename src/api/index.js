@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from "../store";
 
 export const apiAxios = axios.create({
-    baseURL: 'http://47.254.253.64:5000/api',
+    baseURL: process.env.VUE_APP_BASE_URL + "/api",
     headers: {
         post: {
             'Content-Type': 'application/json',
